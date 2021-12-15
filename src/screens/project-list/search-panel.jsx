@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react"
+import React from "react"
 
-export const SearchPanel = () => {
-
-    const [users, setUsers] = useState([])
+export const SearchPanel = ({users,param, setParam}) => {
 
     return (
         <form action="">
@@ -13,9 +11,16 @@ export const SearchPanel = () => {
                 })} />
                 <select value={param.personId} onChange={evt => setParam({
                     ...param,
-                    personId: evt.target.personId
+                    personId: evt.target.value
                 })} >
                     <option value="">负责人</option>
+                    {
+                        users.map(user => {
+                            return (
+                                <option key={user.id} value={user.id}>{user.name}</option>
+                            )
+                        })
+                    }
                 </select>
             </div>
         </form>
